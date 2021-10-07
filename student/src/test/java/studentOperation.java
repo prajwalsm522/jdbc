@@ -63,10 +63,12 @@ public class studentOperation implements studentInterface {
             System.out.println("Connected to DB bruhh...");
             PreparedStatement pstm = con.prepareStatement("SELECT * FROM STUDENT WHERE USN = ?");
             pstm.setInt(1, 1);
-            ResultSet i = pstm.executeQuery();
+            ResultSet rs = pstm.executeQuery();
             System.out.println("----------STUDENT DB----------");
-            System.out.println(i.getString(1)+i.getInt(1)+i.getString(1)+ i.getInt(1)+i.getString(1));
-            System.out.println(i + "rows affected");
+            while(rs.next()){
+                System.out.println(rs.getString("name")+rs.getInt("age")+rs.getString("branch")+ rs.getInt("usn")+rs.getString("place"));
+            }
+            System.out.println(rs + "rows affected");
 
         } catch (ClassNotFoundException e) {
             System.out.println(e);
