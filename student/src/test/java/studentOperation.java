@@ -37,25 +37,45 @@ public class studentOperation implements studentInterface {
             System.out.println(e);
         }
     }
+
     public void removeStudent() {
-    try{
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        con = DriverManager.getConnection(address, userName, password);
-        System.out.println("Connection Established Successfully");
-        stm = con.createStatement();
-        PreparedStatement pstm = con.prepareStatement("DELETE FROM STUDENT WHERE USN = ?");
-        pstm.setInt(1,1);
-        int i = pstm.executeUpdate();
-        System.out.println(i + " rows affected");
-    } catch (ClassNotFoundException e) {
-        System.out.println(e);
-        System.out.println("failed..");
-    } catch (SQLException e) {
-        System.out.println(e);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(address, userName, password);
+            System.out.println("Connection Established Successfully");
+//        stm = con.createStatement();
+            PreparedStatement pstm = con.prepareStatement("DELETE FROM STUDENT WHERE USN = ?");
+            pstm.setInt(1, 1);
+            int i = pstm.executeUpdate();
+            System.out.println(i + " rows affected");
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+            System.out.println("failed..");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
+    public void displayStudents() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(address, userName, password);
+            System.out.println("Connected to DB bruhh...");
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM STUDENT WHERE USN = ?");
+            pstm.setInt(1, 1);
+            ResultSet i = pstm.executeQuery();
+            System.out.println("----------STUDENT DB----------");
+            System.out.println(i.getString(1)+i.getInt(1)+i.getString(1)+ i.getInt(1)+i.getString(1));
+            System.out.println(i + "rows affected");
 
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
 
+    }
+    public void exit(){
 
     }
 }

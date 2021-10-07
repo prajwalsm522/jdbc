@@ -10,7 +10,8 @@ public class student{
 
         studentOperation op = new studentOperation();
 //        op.insertStudent();
-        op.removeStudent();
+//        op.removeStudent();
+        op.displayStudents();
 
         }
     }
